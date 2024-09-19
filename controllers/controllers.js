@@ -14,6 +14,17 @@ const getHomePage = (req, res, next) => {
     };
 };
 
+const getLoginPage = (req, res, next) => {
+    try {
+        res.render('login', {
+            title: pageTitle
+        })
+    } catch(err) {
+        next(err); 
+    }
+}
+
 module.exports = {
     getHomePage,
+    getLoginPage
 }
