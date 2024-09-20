@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root variables */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --font-family: 'Helvetica Neue', Arial, sans-serif;
+    --base-spacing: 1rem;
+    --header-height: 60px;
+}
+
+/* Base styles */
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    background-color: #000000;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Buttons */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* Form elements */
+input, textarea, select, button {
+    font-family: inherit;
+    font-size: inherit;
+}
