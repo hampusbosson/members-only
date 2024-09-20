@@ -1,4 +1,5 @@
-const db = require('../db/queries')
+const query = require('../db/queries')
+const bcrypt = require('bcryptjs');
 const { body, validationResult } = require("express-validator");
 
 const getHomePage = (req, res, next) => {
@@ -31,8 +32,29 @@ const getSignUpPage = (req, res, next) => {
     };
 };
 
+async function signUp(req, res, next) {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const userName = req.body.username;
+    const password = req.body.password;
+
+    try {
+        bcrypt.hash(password, 10, async(err, hashedPassword) => {
+            if (err) {
+                return next(err);
+            }
+            await query.insertUser(firstName, lastName, userName, hashedPassword);
+        });
+        
+        res.redirect('/');
+    } catch(err) {
+        return next(err);
+    }
+}
+
 module.exports = {
     getHomePage,
     getLoginPage,
     getSignUpPage,
+    signUp
 }
