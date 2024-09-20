@@ -1,4 +1,4 @@
-const query = require("./pool");
+const pool = require("./pool");
 
 async function insertUser(
     firstName,
@@ -20,7 +20,7 @@ async function insertUser(
     ];
 
     try {
-        const result = await query(userInsertQuery, userValues);
+        const result = await pool.query(userInsertQuery, userValues);
         const userId = result.rows[0].id;
         console.log('User inserted successfully with ID:', userId);
 
