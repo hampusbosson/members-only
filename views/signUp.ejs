@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %></title>
+</head>
+<body>
+    <header class="header p-10 flex justify-around items-center bg-[#232323]">
+        <a href="/" class="flex gap-2 relative">
+            <h1 class="text-[2.2rem] inline-block text-red-600 "><strong>Members</strong></h1>
+            <h1 class="text-[2rem] inline-block z-10 mt-[3px]"><strong>Only</strong></h1>
+            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 mb-[11px] "></span>
+        </a>
+    </header>
+    <main class="flex justify-center">
+        <div class="flex flex-col justify-center 2xl:p-32 p-10">
+            <h2 class="text-left w-96 mb-6 text-3xl font-semibold">Sign up</h2>
+            <form action="" method="POST" class="flex flex-col gap-4">
+                <div class="flex flex-row gap-4">
+                    <div class="flex flex-col gap-1">
+                        <label for="firstName" class="text-sm">First name</label>
+                        <input type="text" name="firstName" id="firstName" placeholder="Enter your first name" required class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-80 rounded-lg outline-none">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="lastName" class="text-sm">Last name</label>
+                        <input type="text" name="lastName" id="lastName" placeholder="Enter your last name" required class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-80 rounded-lg outline-none">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="username" class="text-sm">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter your username" required class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-full rounded-lg outline-none">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="password" class="text-sm">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter a password" required class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-full rounded-lg outline-none">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="confirmPassword" class="text-sm">Confirm password</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm your password" required class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-full rounded-lg outline-none">
+                </div>
+                <button type="submit" class="w-full bg-red-600 rounded-lg text-black p-3 mt-3 hover:brightness-125 hover:text-white font-medium tracking-wider">Submit</button>
+            </form>
+            <a href="/log-in" class="underline w-full text-center mt-3 tracking-wider">Already have an account? <strong>Login</strong></a>
+        </div>
+    </main>
+</body>
+</html>
