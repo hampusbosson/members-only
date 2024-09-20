@@ -1,13 +1,10 @@
 const db = require('../db/queries')
 const { body, validationResult } = require("express-validator");
-const { get } = require("../routes/routes");
-
-const pageTitle = 'MembersOnly';
 
 const getHomePage = (req, res, next) => {
     try {
         res.render('index', {
-            title: pageTitle,
+            title: 'Home',
         });
     } catch(err) {
         next(err);
@@ -17,14 +14,25 @@ const getHomePage = (req, res, next) => {
 const getLoginPage = (req, res, next) => {
     try {
         res.render('login', {
-            title: pageTitle
-        })
+            title: 'Login'
+        });
     } catch(err) {
         next(err); 
-    }
-}
+    };
+};
+
+const getSignUpPage = (req, res, next) => {
+    try {
+        res.render('signUp', {
+            title: 'Sign up'
+        });
+    } catch(err) {
+        next(err);
+    };
+};
 
 module.exports = {
     getHomePage,
-    getLoginPage
+    getLoginPage,
+    getSignUpPage,
 }
