@@ -13,7 +13,7 @@
 :root {
     --primary-color: #007bff;
     --secondary-color: #6c757d;
-    --font-family: 'Helvetica Neue', Arial, sans-serif;
+    --font-family: 'Montserrat', sans-serif;
     --base-spacing: 1rem;
     --header-height: 60px;
 }
@@ -23,13 +23,17 @@
 body {
     font-family: var(--font-family);
     line-height: 1.6;
-    background-color: #000000;
+    color: white;
+    background-color: #1a1a1a;
 }
 
 /* Links */
 a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
 
 

@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %></title>
 </head>
 <body>
-    
+    <header class="header p-10 flex justify-around items-center bg-[#232323]">
+        <a href="/" class="flex gap-2 relative">
+            <h1 class="text-[2.2rem] inline-block text-red-600 "><strong>Members</strong></h1>
+            <h1 class="text-[2rem] inline-block z-10 mt-[3px]"><strong>Only</strong></h1>
+            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 mb-[11px] "></span>
+        </a>
+    </header>
+    <main class="flex justify-center">
+        <div class="flex flex-col justify-center mt-52">
+            <h2 class="text-left w-96 mb-6 text-3xl font-semibold">Login</h2>
+            <form action="" method="POST" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-1">
+                    <label for="username" class="text-sm">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter username" required class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-96 rounded-lg outline-none">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="password" class="text-sm">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter password" required class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-96 rounded-lg outline-none">
+                </div>
+                <button type="submit" class="w-96 bg-red-600 rounded-lg text-black p-3 mt-3 hover:brightness-125 hover:text-white font-medium tracking-wider">Login</button>
+            </form>
+            <a href="/sign-up" class="underline w-96 text-center mt-3 tracking-wider">Don't have an account? <strong>Sign up</strong></a>
+        </div>
+    </main>
 </body>
 </html>
