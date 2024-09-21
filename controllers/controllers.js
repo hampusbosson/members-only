@@ -1,4 +1,4 @@
-const pool = require('../db/queries')
+const query = require('../db/queries')
 const bcrypt = require('bcryptjs');
 const passport = require('../config/passportConfig');
 const { body, validationResult } = require("express-validator");
@@ -44,7 +44,7 @@ async function signUp(req, res, next) {
             if (err) {
                 return next(err);
             }
-            await pool.query.insertUser(firstName, lastName, userName, hashedPassword);
+            await query.insertUser(firstName, lastName, userName, hashedPassword);
         });
 
         res.redirect('/');
@@ -78,7 +78,7 @@ const getJoinClubPage = (req, res, next) => {
     }
 }
 
-const joinClub = (req, res, next) => {
+const joinClub = async(req, res, next) => {
     const userPasscode = req.body.passcode.toLowerCase();
 
     const correctAnswers = [
@@ -113,6 +113,15 @@ const joinClub = (req, res, next) => {
                 errorMessage: 'Incorrect answer. Please try again.'
             });
         }
+
+        if (!req.user) {
+            return res.render('joinClub', {
+                title: 'Join Club',
+                errorMessage: 'You must be logged in to join the club.'
+            });
+        }
+
+        await query.updateMembership(req.user.username, 'member');
 
         res.render('index', { 
             title: 'Home',

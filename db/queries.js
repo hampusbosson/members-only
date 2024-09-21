@@ -31,8 +31,25 @@ async function insertUser(
     }
 }
 
+async function updateMembership(username, newMembership) {
+    const upgradeMembershipQuery = `
+        UPDATE users
+        SET membership = $1
+        WHERE LOWER(username) = LOWER($2);
+    `;
+
+    try {
+        await pool.query(upgradeMembershipQuery, [newMembership, username]);
+        console.log(`Membership upgraded to ${newMembership} for user: ${username}`);
+    } catch (err) {
+        console.error('Error updating membership:', err.message);
+        throw new Error(`Error updating membership: ${err.message}`);
+    }
+}
+
 module.exports = {
     insertUser,
+    updateMembership
 }
 
 
