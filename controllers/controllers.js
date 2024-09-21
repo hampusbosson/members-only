@@ -71,6 +71,7 @@ const getJoinClubPage = (req, res, next) => {
     try {
         res.render('joinClub', {
             title: 'Join club',
+            errorMessage: false
         });
     } catch(err) {
         return next(err);
@@ -91,21 +92,21 @@ const joinClub = (req, res, next) => {
         'leo messi'
     ];
 
-    const penaldoAnwer = [
+    const penaldoAnswer = [
         'ronaldo',
         'cristiano ronaldo'
     ]
 
     try {
-        let correctAnswer = correctAnswers.includes(userPasscode);
-
-        if(userPasscode.includes(penaldoAnwer)) {
+        if(penaldoAnswer.includes(userPasscode)) {
             return res.render('joinClub', { 
                 title: 'Join club',
                 errorMessage: 'Try reading the question again.' 
             })
-        }
+        } 
 
+        let correctAnswer = correctAnswers.includes(userPasscode);
+        
         if(!correctAnswer) {
             return res.render('joinClub', {
                 title: 'Join Club',
