@@ -77,6 +77,51 @@ const getJoinClubPage = (req, res, next) => {
     }
 }
 
+const joinClub = (req, res, next) => {
+    const userPasscode = req.body.passcode.toLowerCase();
+
+    const correctAnswers = [
+        'messi', 
+        'lionel messi', 
+        'antony', 
+        'lionel andrés messi', 
+        'lionel andres messi', 
+        'la pulga', 
+        'leo', 
+        'leo messi'
+    ];
+
+    const penaldoAnwer = [
+        'ronaldo',
+        'cristiano ronaldo'
+    ]
+
+    try {
+        let correctAnswer = correctAnswers.includes(userPasscode);
+
+        if(userPasscode.includes(penaldoAnwer)) {
+            return res.render('joinClub', { 
+                title: 'Join club',
+                errorMessage: 'Try reading the question again.' 
+            })
+        }
+
+        if(!correctAnswer) {
+            return res.render('joinClub', {
+                title: 'Join Club',
+                errorMessage: 'Incorrect answer. Please try again.'
+            });
+        }
+
+        res.render('index', { 
+            title: 'Home',
+            succesMessage: 'Congratulations! You have joined the club!'
+        });
+    } catch(err) {
+        return next(err);
+    }
+}
+
 
 module.exports = {
     getHomePage,
@@ -85,5 +130,6 @@ module.exports = {
     signUp,
     authenticateUser,
     logOutUser,
-    getJoinClubPage
+    getJoinClubPage,
+    joinClub
 }

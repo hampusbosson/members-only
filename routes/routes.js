@@ -9,5 +9,6 @@ router.get('/sign-up', controllers.getSignUpPage)
 router.post('/sign-up', controllers.signUp)
 router.get('/log-out', controllers.logOutUser);
 router.get('/join-club', controllers.getJoinClubPage);
+router.post('/join-club', controllers.joinClub)
 
 module.exports = router;
