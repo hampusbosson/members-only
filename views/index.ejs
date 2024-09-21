@@ -29,9 +29,9 @@
         <% } %>
     </header>
     <main class="flex flex-col justify-center items-center">
+        <%if(currentUser) { %>
         <div class="flex gap-1 mt-8">
             <p class="text-xl">Hello,</p>
-        <%if(currentUser) { %>
             <p class="text-xl text-red-600"> <%= currentUser.username %>!</p>
         <% } %>
         </div>
