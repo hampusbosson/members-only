@@ -26,7 +26,12 @@
                 </div>
                 <form action="" method="POST">
                     <div class="flex flex-col gap-1 mt-5">
-                        <label for="passcode" class="text-sm">Enter the passcode to join</label>
+                        <div class="flex justify-between items-center">
+                            <label for="passcode" class="text-sm">Enter the passcode to join</label>
+                            <% if(errorMessage) { %>
+                                <p class="text-xs text-red-700"><%= errorMessage %></p>
+                            <% } %>
+                        </div>
                         <input type="text" name="passcode" id="passcode" placeholder="Passcode" class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-96 rounded-lg outline-none">
                     </div>
                     <button type="submit" class="bg-red-600 w-96 rounded-lg text-black p-3 mt-4 hover:brightness-125 hover:text-white font-medium tracking-wider">Join</button>
