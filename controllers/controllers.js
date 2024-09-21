@@ -67,6 +67,16 @@ const logOutUser = (req, res, next) => {
     });
 }
 
+const getJoinClubPage = (req, res, next) => {
+    try {
+        res.render('joinClub', {
+            title: 'Join club',
+        });
+    } catch(err) {
+        return next(err);
+    }
+}
+
 
 module.exports = {
     getHomePage,
@@ -74,5 +84,6 @@ module.exports = {
     getSignUpPage,
     signUp,
     authenticateUser,
-    logOutUser
+    logOutUser,
+    getJoinClubPage
 }
