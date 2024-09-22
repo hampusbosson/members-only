@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/styles.css" />
     <title><%= title %></title>
   </head>
-  <body>
+  <body class="pb-12">
     <header class="header p-10 flex justify-around items-center bg-[#232323]">
         <a href="/" class="flex gap-2 relative">
             <h1 class="text-[2.2rem] inline-block text-red-600 "><strong>Members</strong></h1>
@@ -43,19 +43,31 @@
 
         <% if (currentUser && currentUser.membership === 'member') { %>
             <div>
-                <button id="toggleFormBtn" class="bg-[#262626] px-28 py-2 border-[1px] border-gray-700 rounded-md text-lg font-semibold w-[40rem]">
+                <button id="toggleFormBtn" class="bg-[#262626] px-28 py-2 rounded-md text-lg font-semibold w-[40rem]">
                     + New message
                 </button>
             </div>
             <div id="newMessageForm" class="mt-4 w-[40rem]">
-                <form action="/new-message" method="POST" class="flex flex-col gap-4">
-                    <input type="text" name="title" id="title" placeholder="Write your title here..." class="bg-transparent border border-gray-500 p-3 rounded-md w-full outline-none">
+                <form action="" method="POST" class="flex flex-col gap-4">
+                    <input type="text" name="title" id="title" placeholder="Write your title here..." class="bg-transparent border border-gray-500 p-3 rounded-md w-full outline-none" required>
                     <textarea name="messageContent" class="bg-transparent border border-gray-500 p-3 rounded-md w-full outline-none" placeholder="Write your message here..." required></textarea>
                     <button type="submit" class="bg-red-600 text-white px-5 py-2 rounded-md">Submit</button>
                 </form>
             </div>
             <div>
-                more messages
+                <% if (messages) { %>
+                    <ul class="-mt-4">
+                        <% messages.forEach((message) => { %>
+                            <li class="bg-[#262626] w-[40rem] rounded-md p-3 mt-4 border-[1px] border-gray-700">
+                                <p class="text-sm text-[#949494] mb-2"><%= message.username %></p> <!-- Add margin-bottom to separate username -->
+                                <div class="flex flex-col">
+                                    <p class="font-semibold text-lg"><%= message.title %></p> <!-- Add bottom margin to separate title -->
+                                    <p class="leading-tight -mt-[3px] text-sm"><%= message.content %></p> <!-- Remove extra spacing -->
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } %>
             </div>
         <% } %>
     </main>
