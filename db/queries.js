@@ -70,7 +70,9 @@ async function addMessage(userId, title, content) {
 
 async function getMessages() {
     const getMessagesQuery = `
-    SELECT * FROM messages;
+    SELECT messages.title, messages.content, messages.timestamp, users.username
+    FROM messages
+    JOIN users ON messages.user_id = users.id;
     `;
 
     try {
