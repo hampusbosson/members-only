@@ -54,3 +54,7 @@ input, textarea, select, button {
 input::placeholder {
     color: #757575; /* Light gray */
 }
+
+textarea::placeholder {
+    color: #757575; /* Light gray */
+}
