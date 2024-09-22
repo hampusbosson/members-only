@@ -13,7 +13,7 @@
             <h1 class="text-[2rem] inline-block z-10 mt-[3px]"><strong>Only</strong></h1>
             <span class="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 mb-[11px] "></span>
         </a>
-        <%if(currentUser) { %>
+        <% if (currentUser) { %>
             <div class="flex gap-6">
                 <a href="/join-club" class="flex justify-center items-center border-solid border-[1px] border-gray-500 rounded-3xl w-28 h-10 text-center bg-[#2b2b2b] hover:brightness-125 tracking-wide">
                     Join club
@@ -28,16 +28,60 @@
             </a>
         <% } %>
     </header>
-    <main class="flex flex-col justify-center items-center">
-        <%if(currentUser) { %>
+
+    <main class="flex flex-col justify-center items-center w-full">
+        <% if (currentUser) { %>
         <div class="flex gap-1 mt-8">
             <p class="text-xl">Hello,</p>
             <p class="text-xl text-red-600"> <%= currentUser.username %>!</p>
+        </div>
         <% } %>
-        </div>
+
         <div class="flex flex-col w-[40rem] mt-10">
-            <h1 class="text-4xl tracking-wide font-bold">Messages</h1>
+            <h1 class="text-5xl tracking-wide font-bold z-10">Messages</h1>
         </div>
+
+        <% if (currentUser && currentUser.membership === 'member') { %>
+            <div>
+                <button id="toggleFormBtn" class="bg-[#262626] px-28 py-2 border-[1px] border-gray-700 rounded-md text-lg font-semibold w-[40rem]">
+                    + New message
+                </button>
+            </div>
+            <div id="newMessageForm" class="mt-4 w-[40rem]">
+                <form action="/new-message" method="POST" class="flex flex-col gap-4">
+                    <input type="text" name="title" id="title" placeholder="Write your title here..." class="bg-transparent border border-gray-500 p-3 rounded-md w-full outline-none">
+                    <textarea name="messageContent" class="bg-transparent border border-gray-500 p-3 rounded-md w-full outline-none" placeholder="Write your message here..." required></textarea>
+                    <button type="submit" class="bg-red-600 text-white px-5 py-2 rounded-md">Submit</button>
+                </form>
+            </div>
+            <div>
+                more messages
+            </div>
+        <% } %>
     </main>
+
+    <script>
+      // JavaScript to toggle form visibility
+      const toggleFormBtn = document.getElementById('toggleFormBtn');
+      const newMessageForm = document.getElementById('newMessageForm');
+
+      toggleFormBtn.addEventListener('click', () => {
+        newMessageForm.classList.toggle('active');
+      });
+    </script>
+
+    <style>
+      /* Slide down animation */
+      #newMessageForm {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.5s ease;
+      }
+
+      #newMessageForm.active {
+        height: 14rem; /* Adjust height to match your form content */
+      }
+    </style>
+
   </body>
 </html>
