@@ -68,10 +68,25 @@ async function addMessage(userId, title, content) {
     }
 }
 
+async function getMessages() {
+    const getMessagesQuery = `
+    SELECT * FROM messages;
+    `;
+
+    try {
+        const result = await pool.query(getMessagesQuery);
+        return result.rows; 
+    } catch(err) {
+        console.error('Error receiving messages:', err.message);
+        throw new Error(`Error receiving messages: ${err.message}`);
+    }
+}
+
 module.exports = {
     insertUser,
     updateMembership,
-    addMessage
+    addMessage,
+    getMessages
 }
 
 

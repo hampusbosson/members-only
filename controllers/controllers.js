@@ -3,10 +3,13 @@ const bcrypt = require('bcryptjs');
 const passport = require('../config/passportConfig');
 const { body, validationResult } = require("express-validator");
 
-const getHomePage = (req, res, next) => {
+const getHomePage = async(req, res, next) => {
     try {
+        const messages = await query.getMessages();
+
         res.render('index', {
             title: 'Home',
+            messages: messages,
         });
     } catch(err) {
         next(err);
@@ -140,10 +143,7 @@ const addMessage = async(req, res, next) => {
     try {
         await query.addMessage(userId, title, content);
 
-        res.render('index', {
-            title: 'Home',
-            succesMessage: false
-        });
+        res.redirect('/');
     } catch(err) {
         return next(err);
     }
