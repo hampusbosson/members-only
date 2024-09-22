@@ -1,15 +1,23 @@
 const query = require('../db/queries')
 const bcrypt = require('bcryptjs');
 const passport = require('../config/passportConfig');
+const { formatDistanceToNow } = require("date-fns");
 const { body, validationResult } = require("express-validator");
 
 const getHomePage = async(req, res, next) => {
     try {
         const messages = await query.getMessages();
 
+        const formattedMessages = messages.map((message) => {
+            return {
+                ...message, // Spread the original message properties
+                timestamp: formatDistanceToNow(new Date(message.timestamp)) // Format the timestamp
+            };
+        });
+
         res.render('index', {
             title: 'Home',
-            messages: messages,
+            messages: formattedMessages,
         });
     } catch(err) {
         next(err);

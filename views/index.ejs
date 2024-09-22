@@ -47,6 +47,7 @@
                     + New message
                 </button>
             </div>
+            <% } %>
             <div id="newMessageForm" class="mt-4 w-[40rem]">
                 <form action="" method="POST" class="flex flex-col gap-4">
                     <input type="text" name="title" id="title" placeholder="Write your title here..." class="bg-transparent border border-gray-500 p-3 rounded-md w-full outline-none" required>
@@ -59,17 +60,16 @@
                     <ul class="-mt-4">
                         <% messages.forEach((message) => { %>
                             <li class="bg-[#262626] w-[40rem] rounded-md p-3 mt-4 border-[1px] border-gray-700">
-                                <p class="text-sm text-[#949494] mb-2"><%= message.username %></p> <!-- Add margin-bottom to separate username -->
+                                <p class="text-sm text-[#949494] mb-2"><%= currentUser ? message.username + ' • ' + message.timestamp + ' ago' : 'anonymous'%></p> 
                                 <div class="flex flex-col">
-                                    <p class="font-semibold text-lg"><%= message.title %></p> <!-- Add bottom margin to separate title -->
-                                    <p class="leading-tight -mt-[3px] text-sm"><%= message.content %></p> <!-- Remove extra spacing -->
+                                    <p class="font-semibold text-lg"><%= message.title %></p> 
+                                    <p class="leading-tight -mt-[3px] text-sm"><%= message.content %></p> 
                                 </div>
                             </li>
                         <% }) %>
                     </ul>
                 <% } %>
             </div>
-        <% } %>
     </main>
 
     <script>
