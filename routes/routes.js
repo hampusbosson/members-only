@@ -3,6 +3,7 @@ const controllers = require('../controllers/controllers')
 const router = Router();
 
 router.get('/', controllers.getHomePage);
+router.post('/', controllers.addMessage);
 router.get('/log-in', controllers.getLoginPage)
 router.post('/log-in', controllers.authenticateUser)
 router.get('/sign-up', controllers.getSignUpPage)

@@ -132,6 +132,23 @@ const joinClub = async(req, res, next) => {
     }
 }
 
+const addMessage = async(req, res, next) => {
+    const userId = req.user.id;
+    const title = req.body.title;
+    const content = req.body.messageContent;
+
+    try {
+        await query.addMessage(userId, title, content);
+
+        res.render('index', {
+            title: 'Home',
+            succesMessage: false
+        });
+    } catch(err) {
+        return next(err);
+    }
+}
+
 
 module.exports = {
     getHomePage,
@@ -141,5 +158,6 @@ module.exports = {
     authenticateUser,
     logOutUser,
     getJoinClubPage,
-    joinClub
+    joinClub,
+    addMessage
 }

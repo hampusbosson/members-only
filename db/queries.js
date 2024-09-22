@@ -47,9 +47,31 @@ async function updateMembership(username, newMembership) {
     }
 }
 
+async function addMessage(userId, title, content) {
+    const addMessageQuery = `
+        INSERT INTO messages (title, content, user_id)
+        VALUES($1, $2, $3);
+    `;
+
+    const messageValues = [
+        title,
+        content,
+        userId
+    ];
+
+    try {
+        await pool.query(addMessageQuery, messageValues);
+        console.log('message inserted succesfully for user with ID:', userId);
+    } catch(err) {
+        console.error('Error inserting message:', err.message);
+        throw new Error(`Error inserting message: ${err.message}`);
+    }
+}
+
 module.exports = {
     insertUser,
-    updateMembership
+    updateMembership,
+    addMessage
 }
 
 
