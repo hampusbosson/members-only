@@ -72,7 +72,8 @@ async function getMessages() {
     const getMessagesQuery = `
     SELECT messages.title, messages.content, messages.timestamp, users.username
     FROM messages
-    JOIN users ON messages.user_id = users.id;
+    JOIN users ON messages.user_id = users.id
+    ORDER BY messages.timestamp DESC;
     `;
 
     try {
