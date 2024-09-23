@@ -165,6 +165,50 @@ const getAdminPage = (req, res, next) => {
     }
 }
 
+const grantAdmin = async(req, res, next) => {
+    const userPasscode = req.body.passcode.toLowerCase();
+
+    const correctAnswers = [
+        'candle',
+        'a candle'
+    ];
+
+    try {
+        let correctAnswer = correctAnswers.includes(userPasscode);
+        
+        if(!correctAnswer) {
+            return res.render('admin', {
+                title: 'Admin',
+                errorMessage: 'Incorrect answer. Please try again.'
+            });
+        }
+
+        if (!req.user) {
+            return res.render('admin', {
+                title: 'Admin',
+                errorMessage: 'You must be logged in to become an admin.'
+            });
+        }
+
+        await query.updateMembership(req.user.username, 'admin');
+
+        res.redirect('/');
+    } catch(err) {
+        return next(err);
+    }
+}
+
+const deleteMessage = async(req, res, next) => {
+    const messageId = req.params.id;
+
+    try {
+        await query.deleteMessage(messageId);
+        res.redirect('/'); 
+    } catch (err) {
+        next(err);
+    }
+}
+
 
 module.exports = {
     getHomePage,
@@ -176,5 +220,7 @@ module.exports = {
     getJoinClubPage,
     joinClub,
     addMessage,
-    getAdminPage
+    getAdminPage,
+    grantAdmin,
+    deleteMessage
 }

@@ -70,7 +70,7 @@ async function addMessage(userId, title, content) {
 
 async function getMessages() {
     const getMessagesQuery = `
-    SELECT messages.title, messages.content, messages.timestamp, users.username
+    SELECT messages.title, messages.content, messages.timestamp, messages.id, users.username
     FROM messages
     JOIN users ON messages.user_id = users.id
     ORDER BY messages.timestamp DESC;
@@ -85,11 +85,26 @@ async function getMessages() {
     }
 }
 
+async function deleteMessage(messageId) {
+    const deleteMessageQuery = `
+        DELETE FROM messages WHERE id = $1;
+    `;
+
+    try {
+        await pool.query(deleteMessageQuery, [messageId]);
+        console.log(`Message with ID ${messageId} deleted successfully`);
+    } catch (err) {
+        console.error('Error deleting message:', err.message);
+        throw new Error('Error deleting message');
+    }
+}
+
 module.exports = {
     insertUser,
     updateMembership,
     addMessage,
-    getMessages
+    getMessages,
+    deleteMessage
 }
 
 
