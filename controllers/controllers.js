@@ -134,10 +134,7 @@ const joinClub = async(req, res, next) => {
 
         await query.updateMembership(req.user.username, 'member');
 
-        res.render('index', { 
-            title: 'Home',
-            succesMessage: 'Congratulations! You have joined the club!'
-        });
+        res.redirect('/');
     } catch(err) {
         return next(err);
     }
