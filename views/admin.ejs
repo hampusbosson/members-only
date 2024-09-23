@@ -1,0 +1,23 @@
+<div class="flex flex-col justify-center items-center mt-24"></div>
+    <div class="flex flex-col justify-center items-center">
+        <div class="mb-4">
+            <h1 class="text-6xl tracking-wide font-semibold text-[#515151] mb-2">Become Admin</h1>
+            <p class="text-center text-[#515151] italic -mt-2 text-sm">Correct answer will make you an admin</p>
+        </div>
+        <div class="bg-[#262626] px-28 py-12 border-[1px] border-gray-700 rounded-lg text-lg font-light mx-8 max-w-[55rem] text-center">
+            “You measure my life in hours and I serve you by expiring. I'm quick when I'm thin and slow when I'm fat. The wind is my enemy. What am I?”
+        </div>
+        <form action="" method="POST">
+            <div class="flex flex-col gap-1 mt-5">
+                <div class="flex justify-between items-center">
+                    <label for="passcode" class="text-sm">Enter the passcode to join</label>
+                    <% if(errorMessage) { %>
+                        <p class="text-xs text-red-700"><%= errorMessage %></p>
+                    <% } %>
+                </div>
+                <input type="text" name="passcode" id="passcode" placeholder="Passcode" class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-96 rounded-lg outline-none">
+            </div>
+            <button type="submit" class="bg-red-600 w-96 rounded-lg text-black p-3 mt-4 hover:brightness-125 hover:text-white font-medium tracking-wider">Join</button>
+        </form>
+    </div>
+</div>
