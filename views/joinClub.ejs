@@ -1,43 +1,23 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles.css" />
-    <title><%= title %></title>
-  </head>
-  <body class="flex flex-col h-screen">
-    <header class="header p-10 flex justify-around items-center bg-[#232323] h-20%">
-        <a href="/" class="flex gap-2 relative">
-            <h1 class="text-[2.2rem] inline-block text-red-600 "><strong>Members</strong></h1>
-            <h1 class="text-[2rem] inline-block z-10 mt-[3px]"><strong>Only</strong></h1>
-            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 mb-[11px] "></span>
-        </a>
-    </header>
-    <main class="h-full">
-        <div class="flex flex-col justify-center items-center h-full">
-            <div class="flex flex-col justify-center items-center">
-                <div class="mb-4">
-                    <h1 class="text-6xl tracking-wide font-semibold text-[#515151] mb-2">Join Club</h1>
-                    <p class="text-center text-[#515151] italic -mt-2 text-sm">Correct answer will grant club access</p>
-                </div>
-                <div class="bg-[#262626] px-28 py-12 border-[1px] border-gray-700 rounded-lg text-lg font-light">
-                    Who is the <strong class="font-extrabold underline">G</strong>reatest football player <strong class="font-extrabold underline">O</strong>f <strong class="font-extrabold underline">A</strong>ll <strong class="font-extrabold underline">T</strong>ime? 
-                </div>
-                <form action="" method="POST">
-                    <div class="flex flex-col gap-1 mt-5">
-                        <div class="flex justify-between items-center">
-                            <label for="passcode" class="text-sm">Enter the passcode to join</label>
-                            <% if(errorMessage) { %>
-                                <p class="text-xs text-red-700"><%= errorMessage %></p>
-                            <% } %>
-                        </div>
-                        <input type="text" name="passcode" id="passcode" placeholder="Passcode" class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-96 rounded-lg outline-none">
-                    </div>
-                    <button type="submit" class="bg-red-600 w-96 rounded-lg text-black p-3 mt-4 hover:brightness-125 hover:text-white font-medium tracking-wider">Join</button>
-                </form>
-            </div>
+<div class="flex flex-col justify-center items-center mt-24">
+    <div class="flex flex-col justify-center items-center">
+        <div class="mb-4">
+            <h1 class="text-6xl tracking-wide font-semibold text-[#515151] mb-2">Join Club</h1>
+            <p class="text-center text-[#515151] italic -mt-2 text-sm">Correct answer will grant club access</p>
         </div>
-    </main>
-  </body>
-</html>
+        <div class="bg-[#262626] px-28 py-12 border-[1px] border-gray-700 rounded-lg text-lg font-light">
+            Who is the <strong class="font-extrabold underline">G</strong>reatest football player <strong class="font-extrabold underline">O</strong>f <strong class="font-extrabold underline">A</strong>ll <strong class="font-extrabold underline">T</strong>ime? 
+        </div>
+        <form action="" method="POST">
+            <div class="flex flex-col gap-1 mt-5">
+                <div class="flex justify-between items-center">
+                    <label for="passcode" class="text-sm">Enter the passcode to join</label>
+                    <% if(errorMessage) { %>
+                        <p class="text-xs text-red-700"><%= errorMessage %></p>
+                    <% } %>
+                </div>
+                <input type="text" name="passcode" id="passcode" placeholder="Passcode" class="bg-transparent border-solid border-[1px] border-gray-700 p-3 text-start h-12 w-96 rounded-lg outline-none">
+            </div>
+            <button type="submit" class="bg-red-600 w-96 rounded-lg text-black p-3 mt-4 hover:brightness-125 hover:text-white font-medium tracking-wider">Join</button>
+        </form>
+    </div>
+</div>
