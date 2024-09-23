@@ -1,0 +1,28 @@
+<a href="/" class="flex gap-2 relative">
+    <h1 class="text-[2.2rem] inline-block text-red-600 "><strong>Members</strong></h1>
+    <h1 class="text-[2rem] inline-block z-10 mt-[3px]"><strong>Only</strong></h1>
+    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 mb-[11px] "></span>
+</a>
+<% if (currentUser && currentUser.membership === 'member') { %>
+    <div class="flex gap-6">
+        <a href="/admin" class="flex justify-center items-center border-solid border-[1px] border-gray-500 rounded-3xl w-28 h-10 text-center bg-[#2b2b2b] hover:brightness-125 tracking-wide">
+            Admin
+        </a>
+        <a href="/log-out" class="flex justify-center items-center border-solid border-[1px] border-gray-500 rounded-3xl w-28 h-10 text-center bg-[#2b2b2b] hover:brightness-125 tracking-wide">
+            Log out
+        </a>
+    </div>
+<% } else if (currentUser) { %>
+    <div class="flex gap-6">
+        <a href="/join-club" class="flex justify-center items-center border-solid border-[1px] border-gray-500 rounded-3xl w-28 h-10 text-center bg-[#2b2b2b] hover:brightness-125 tracking-wide">
+            Join club
+        </a>
+        <a href="/log-out" class="flex justify-center items-center border-solid border-[1px] border-gray-500 rounded-3xl w-28 h-10 text-center bg-[#2b2b2b] hover:brightness-125 tracking-wide">
+            Log out
+        </a>
+    </div>
+<% } else { %>
+    <a href="/log-in" class="flex justify-center items-center border-solid border-[1px] border-gray-500 rounded-3xl w-28 h-10 text-center bg-[#2b2b2b] hover:brightness-125 tracking-wide">
+        Login
+    </a>
+<% } %>
