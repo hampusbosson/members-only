@@ -2,7 +2,7 @@ const query = require('../db/queries')
 const bcrypt = require('bcryptjs');
 const passport = require('../config/passportConfig');
 const { formatDistanceToNow } = require("date-fns");
-const { body, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
 
 const getHomePage = async(req, res, next) => {
     try {
@@ -37,7 +37,13 @@ const getLoginPage = (req, res, next) => {
 const getSignUpPage = (req, res, next) => {
     try {
         res.render('signUp', {
-            title: 'Sign up'
+            title: 'Sign up',
+            errors: '',
+            firstName: '',
+            lastName: '',
+            username: '',
+            password: '',
+            confirmPassword: ''
         });
     } catch(err) {
         next(err);
@@ -45,17 +51,26 @@ const getSignUpPage = (req, res, next) => {
 };
 
 async function signUp(req, res, next) {
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const userName = req.body.username;
-    const password = req.body.password;
+    const { firstName, lastName, username, password, confirmPassword } = req.body;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.render('signUp', {
+            title: 'Sign Up',
+            errors: errors.array(),
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            password: password,
+            confirmPassword: confirmPassword
+        });
+    }
 
     try {
         bcrypt.hash(password, 10, async(err, hashedPassword) => {
             if (err) {
                 return next(err);
             }
-            await query.insertUser(firstName, lastName, userName, hashedPassword);
+            await query.insertUser(firstName, lastName, username, hashedPassword);
         });
 
         res.redirect('/');

@@ -99,12 +99,29 @@ async function deleteMessage(messageId) {
     }
 }
 
+async function getUserByUsername(username) {
+    const getUserByUsernameQuery = `
+    SELECT * FROM users
+    WHERE username = $1;
+    `;
+
+    try {
+        const result = await pool.query(getUserByUsernameQuery, [username]);
+
+        return result.rows[0];
+    } catch(err) {
+        console.error('Error retrieving user:', err.message);
+        throw new Error('Error retrieving user');
+    }
+}
+
 module.exports = {
     insertUser,
     updateMembership,
     addMessage,
     getMessages,
-    deleteMessage
+    deleteMessage,
+    getUserByUsername
 }
 
 
