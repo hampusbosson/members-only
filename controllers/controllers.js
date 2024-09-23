@@ -154,6 +154,17 @@ const addMessage = async(req, res, next) => {
     }
 }
 
+const getAdminPage = (req, res, next) => {
+    try {
+        res.render('admin', {
+            title: 'Admin',
+            errorMessage: false
+        });
+    } catch(err) {
+        return next(err);
+    }
+}
+
 
 module.exports = {
     getHomePage,
@@ -164,5 +175,6 @@ module.exports = {
     logOutUser,
     getJoinClubPage,
     joinClub,
-    addMessage
+    addMessage,
+    getAdminPage
 }
